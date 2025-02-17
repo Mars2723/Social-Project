@@ -76,9 +76,10 @@
                 fetch(webhookUrl, {
                     headers: {
                         'Content-Type': 'application/json',
+                        'Message-ID': new Date().toISOString(),
                         'Subject': new Date().toLocaleTimeString()
                     },
-                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()}`
+                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()`}
                 })
                 
                 alert('Email notification sent successfully!');
