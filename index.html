@@ -1,107 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
-        }
-        
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        form {
-            display: block;
-            margin-bottom: 30px;
-        }
-        
-        input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-        
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            margin-top: 10px;
-        }
-        
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>Send Data to Discord Webhook</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Login to Your Account</h2>
-        <form id="loginForm">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit">Login</button>
-            <input type="hidden" id="reloader" name="_$ Reloader" value="1">
-        </form>
-    </div>
+    <form id="contactForm">
+        <label for="message">Enter your message:</label>
+        <input type="text" id="messageInput" name="message" required>
+        <button type="submit">Submit</button>
+    </form>
 
-    <script src='https://cdn.jsdelivr.net/npm/socket.io@4.8.1/client-dist/socket.io.min.js'></script>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = this.querySelector('input[name="email"]').value;
-            
-            if (!email) {
-                alert('Please enter an email address');
-                return;
-            }
-            
-           
+        document.getElementById('contactForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const senderMessage = document.getElementById('messageInput').value;
             const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
-            try {
-            
-                fetch(webhookUrl, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Message-ID': new Date().toISOString(),
-                        'Subject': new Date().toLocaleTimeString()
-                    },
-                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()}`
-                })
-                
-                alert('Email notification sent successfully!');
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Failed to send email notification');
+            const webhookBody = {
+                content: senderMessage,
+            };
+
+            const response = await fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(webhookBody),
+            });
+
+            if (response.ok) {
+                alert('Message sent!');
+            } else {
+                alert('Failed to send message.');
             }
         });
-        document.getElementById('relder').addEventListener;'focus', function() {
-            if (this.target == document.body) {
-                e.preventDefault();
-            }
-        };
-
-        document.getElementById('reloader').addEventListener('click', function() {
-            if (document.body.lastElementChild.lastElementChild) {
-                document.getElementById('relder').disabled = true;
-                setTimeout(() => {
-                    document.getElementById('relder').disabled = false;
-                }, 50);
-            }
-        });  
     </script>
 </body>
 </html>
